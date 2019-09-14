@@ -13,8 +13,8 @@ bindsym $mod+Delete exec --no-startup-id /usr/local/bin/lock_and_blur.sh
 # i3 config file (v4)
 #
 # Please see https://i3wm.org/docs/userguide.html for a complete reference!
-set $alt Mod1
-set $mod Mod4
+set $alt Mod4
+set $mod Mod1
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
@@ -35,11 +35,12 @@ font pango: Inconsolata 11
 floating_modifier $mod
 
 # start a terminal
-bindsym $mod+Return exec --no-startup-id terminator
+bindsym $mod+Return exec --no-startup-id termite
 bindsym $mod+t exec --no-startup-id terminator
 
 # kill focused window
 bindsym $mod+Shift+q kill
+bindsym $mod+x kill
 
 #Compton animation
  
@@ -233,12 +234,12 @@ hide_edge_borders both
 
  bar {
  	
-status_command i3blocks -c ~/.config/i3/i3blocks.conf
-	
+# status_command i3blocks -c ~/.config/i3blocks/config
+status_command i3status	
 # i3bar_command i3bar -t
 
 	tray_output primary
-	font pango: Envy Code R 10		
+	font pango: Iosevka Light 10		
 	colors {
 		background $elegant
 	    	separator $elegant
@@ -256,7 +257,7 @@ new_window pixel 2
 for_window [class="^.*"] border pixel 0
 
 #d-menu config
-bindsym $mod+d exec --no-startup-id dmenu_extended_run
+bindsym $mod+d exec --no-startup-id dmenu_run -fn 'Iosevkalight:pixelsize=14'
 
 #Volume config
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer sset Master 5%+ ; exec --no-startup-id pkill -RTMIN+10 i3blocks
@@ -289,7 +290,7 @@ exec_always --no-startup-id redshift-gtk
 
 # Ejecutar programas de inicio
 
-exec --no-startup-id dropbox start
+# exec --no-startup-id dropbox start
 exec --no-startup-id nm-applet
 exec --no-startup-id volumeicon
 
@@ -300,4 +301,8 @@ exec --no-startup-id volumeicon
 exec --no-startup-id synclient VertScrollDelta=111 HorizTwoFingerScroll=1
 exec --no-startup-id /usr/bin/gnome-keyring-daemon --start --components=secrets --password-store=gnome
 # Hacer que el persista el esquema de pywal
-exec --no-startup-id wal -R
+# exec --no-startup-id wal -R
+# Updater
+# exec --no-startup-id pamac-tray
+# bar toggle, hide or show
+bindsym $mod+b bar mode toggle
